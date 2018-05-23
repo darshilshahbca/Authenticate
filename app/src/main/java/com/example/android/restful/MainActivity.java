@@ -21,9 +21,9 @@ import static android.R.id.message;
 public class MainActivity extends AppCompatActivity {
 
     private static final String JSON_URL =
-            "http://560057.youcanlearnit.net/services/json/itemsfeed.php";
+            "http://560057.youcanlearnit.net/secured/json/itemsfeed.php";
     private static final String XML_URL =
-            "http://560057.youcanlearnit.net/services/xml/itemsfeed.php";
+            "http://560057.youcanlearnit.net/secured/xml/itemsfeed.php";
 
     private boolean networkOk;
     TextView output;

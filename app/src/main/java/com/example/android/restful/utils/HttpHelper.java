@@ -1,5 +1,6 @@
 package com.example.android.restful.utils;
 
+import android.util.Base64;
 import android.widget.Toast;
 
 import java.io.BufferedOutputStream;
@@ -21,13 +22,19 @@ public class HttpHelper {
      * @return
      * @throws IOException
      */
-    public static String downloadUrl(String address) throws IOException {
+    public static String downloadUrl(String address, String user, String password) throws IOException {
 
         InputStream is = null;
+        byte[] loginBytes = (user + ":" + password).getBytes();
+        StringBuilder loginBuilder = new StringBuilder()
+                .append("Basic ")
+                .append(Base64.encodeToString(loginBytes, Base64.DEFAULT));
+
         try {
 
             URL url = new URL(address);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.addRequestProperty("Authorization", loginBuilder.toString());
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
             conn.setRequestMethod("GET");
